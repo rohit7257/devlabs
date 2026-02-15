@@ -1,212 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html,body{
-            height: 100vh;
-            width: 100vw;
-        }
-        nav{
-            height: 80px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            background-color: black;
-            position: relative;
-        }
-        .circle{
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-            position: absolute;
-            right: 200px;
-            top: -60px;
-            border: 10px solid yellow;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>devlabs</title>
 
-        }
-        .nav_logo{
-            height: 80px;
-            width: 25%;
-            /* border: 3px solid blue; */
-        }
-        .nav_logo img{
-            height: 70px;
-            width: 250px;
-        }
-        .nav_links{
-            width: 50%;
-            /* border: 2px solid yellow; */
-            display: flex;
-            justify-content: space-evenly;
-        }
-        .nav_links a{
-            font-size: 2rem;
-            text-decoration: none;
-            color: #fff;
-        }
-        .nav_btn{
-            width: 10%;
-            /* border: 2px solid  blue; */
-        }
-        .nav_btn button{
-            height: 50px;
-            width: 160px;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.5rem;
-            background-color: purple;
-        }
-        header{
-            height: calc(100% - 90px);
-            display: flex;
-            align-items: center;
-            background-color: #000;
-        }
-        .header_left{
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 35px;
-        }
-        .header_heading{
-            width: 75%;
-            /* border: 2px solid red; */
-        }
-        .header_heading h1{
-            font-size: 2.5rem;
-            color: orange;
-            text-align: center;
-            line-height: 1.3;
-        }
-        .header_content{
-            width: 75%;
-            /* border: 2px solid  blue; */
-        }
-        .header_content p{
-            color: #fff;
-            font-size: 1.5rem;
-        }
-        .header_content span{
-            color: green;
-        }
-        .header_btn{
-            width: 75%;
-            /* border: 2px solid red; */
-            display: flex;
-            justify-content: space-between;
-        }
-        .header_btn button{
-            height: 60px;
-            width: 270px;
-            font-size: 1.3rem;
-            border: none;
-            background-color: purple;
-            color: #fff;
-            border-radius: 15px;
-        }
-        .header_right{
-            width: 50%;
-            height: 100%;
-            /* border: 2px dashed blue; */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .header_right img{
-            height: 450px;
-            width: 500px;
-        }
-    </style>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0f0f0f;
+    overflow-x:hidden;
+}
+
+
+
+nav{
+    height:80px;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    transition:0.3s;
+}
+
+nav.scrolled{
+    background:rgba(0,0,0,0.85);
+    box-shadow:0 5px 20px rgba(0,0,0,0.6);
+}
+
+.circle{
+    height:100px;
+    width:100px;
+    border-radius:50%;
+    position:absolute;
+    right:200px;
+    top:-60px;
+    border:10px solid yellow;
+}
+
+.nav_logo img{
+    height:60px;
+}
+
+.nav_links{
+    display:flex;
+    gap:30px;
+}
+
+.nav_links a{
+    font-size:1.2rem;
+    text-decoration:none;
+    color:#fff;
+    position:relative;
+}
+
+.nav_links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0%;
+    height:2px;
+    background:orange;
+    transition:0.3s;
+}
+
+.nav_links a:hover::after{
+    width:100%;
+}
+
+.nav_btn button{
+    height:45px;
+    width:140px;
+    border-radius:10px;
+    font-size:1rem;
+    border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(8px);
+    color:#fff;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+.nav_btn button:hover{
+    background:linear-gradient(45deg, purple, #ff00ff);
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(255,0,255,0.6);
+}
+
+/* Mobile Menu */
+.menu-toggle{
+    display:none;
+    font-size:28px;
+    color:white;
+    cursor:pointer;
+}
+
+/*  HEADER COMPLETE  */
+
+header{
+    min-height:100vh;
+    margin-top:80px; /* FIXED GAP */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#000,#1a1a1a);
+    padding:40px;
+}
+
+.header_left,
+.header_right{
+    width:50%;
+}
+
+.header_left{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.header_heading h1{
+    font-size:2.5rem;
+    color:orange;
+    line-height:1.3;
+}
+
+.header_content p{
+    color:white;
+    font-size:1.2rem;
+}
+
+.header_content span{
+    color:#00ff88;
+}
+
+.header_btn{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.header_btn button{
+    height:50px;
+    width:220px;
+    font-size:1rem;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.header_btn button:hover{
+    background:purple;
+}
+
+.header_right{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.header_right img{
+    max-width:100%;
+    height:auto;
+}
+
+
+
+@media(max-width:768px){
+
+    nav{
+        justify-content:space-between;
+        padding:0 20px;
+    }
+
+    .nav_links{
+        position:absolute;
+        top:80px;
+        left:0;
+        width:100%;
+        background:rgba(0,0,0,0.95);
+        flex-direction:column;
+        align-items:center;
+        gap:20px;
+        padding:20px 0;
+        display:none;
+    }
+
+    .nav_links.active{
+        display:flex;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav_btn{
+        display:none;
+    }
+
+    header{
+        flex-direction:column;
+        text-align:center;
+        padding:30px 20px;
+        margin-top:80px; /* keeps header perfectly below navbar */
+    }
+
+    .header_left,
+    .header_right{
+        width:100%;
+    }
+
+    .header_heading h1{
+        font-size:1.8rem;
+    }
+
+    .header_content p{
+        font-size:1rem;
+    }
+
+    .header_btn{
+        justify-content:center;
+    }
+
+    .circle{
+        display:none;
+    }
+}
+
+</style>
 </head>
+
 <body>
-    <nav>
-        <div class="nav_logo">
-            <img src="./devlab.jpeg" alt="">
-        </div>
-        <div class="circle"></div>
-        <div class="nav_links">
-            <a href="">Home</a>
-            <a href="">About</a>
-            <a href="">Training</a>
-            <a href="">Service</a>
-            <a href="">Product</a>
-        </div>
-        <div class="nav_btn">
-            <a href=""><button>Let's Talk</button></a>
-        </div>
-    </nav>
-    <header>
-        <div class="container">
-        </div>
-        <div class="header_left">
-            <div class="header_heading">
-                <h1>EMPOWERING YOUNG MINDS THROUGH TRAINING AND WEB DEVELOPMENT!</h1>
-            </div>
-            <div class="header_content">
-                <p>We are passionate <span>WEB DEVELOPER</span> and <span>EDUCATOR</span> dedicated to providing training to student in computer science and IT.</p>
-                <br>
-                <p>We creating engaging website and offer pratical skills that prepare for their future careers.</p>
-            </div>
-            <div class="header_btn">
-                <a href=""><button>Training Program</button></a>
-                <a href=""><button>Web Project</button></a>
-            </div>
-        </div>
-        <div class="header_right">
-            <img src="./comp.png" alt="">
-        </div>
-        
-    </header>
 
+<nav id="navbar">
+    <div class="nav_logo">
+        <img src="./devlab.jpeg" alt="">
+    </div>
 
+    <div class="circle"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        gsap.from (".nav_logo",{
-            opacity:0,
-            duration:2,
-            delay:1,    
-            y:-30,
+    <div class="menu-toggle">&#9776;</div>
 
-        })
-        gsap.from(".nav_links a",{
-            duration:1.5,
-            delay:1,
-            y:-80,
-            stagger:0.8,
-        })
-        gsap.from("nav .circle",{
-            duration:2,
-            delay:1,
-            y:15,
-            repeat:8,
-            yoyo:true,
-            scrub:2,
-        })
-        gsap.from("nav button",{
-            duration:2,
-            y:-25,
-            stagger:2,
-        })
-        gsap.from("h1",{
-            duration:2,
-            y:-25,
-            x:-60,
-            stagger:0.4,
-            scrub:2,
-        })
-    </script>
+    <div class="nav_links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#training">Training</a>
+        <a href="#service">Service</a>
+        <a href="#product">Product</a>
+    </div>
+
+    <div class="nav_btn">
+        <button>Let's Talk</button>
+    </div>
+</nav>
+
+<header id="home">
+    <div class="header_left">
+        <div class="header_heading">
+            <h1>EMPOWERING YOUNG MINDS THROUGH TRAINING AND WEB DEVELOPMENT!</h1>
+        </div>
+
+        <div class="header_content">
+            <p>We are passionate <span>WEB DEVELOPER</span> and <span>EDUCATOR</span> dedicated to providing training to students in computer science and IT.</p>
+            <br>
+            <p>We create engaging websites and offer practical skills that prepare students for their future careers.</p>
+        </div>
+
+        <div class="header_btn">
+            <button>Training Program</button>
+            <button>Web Project</button>
+        </div>
+    </div>
+
+    <div class="header_right">
+        <img src="./comp.png" alt="">
+    </div>
+</header>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+
+/* Sticky Navbar Background Change */
+window.addEventListener("scroll", function(){
+    const nav = document.getElementById("navbar");
+    nav.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+/* Mobile Menu Toggle */
+const toggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav_links");
+
+toggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+
+/* GSAP Animations */
+gsap.from(".nav_logo",{opacity:0,duration:1,y:-30});
+gsap.from(".nav_links a",{duration:1,y:-50,stagger:0.2});
+gsap.from(".header_left",{opacity:0,x:-80,duration:1.5});
+gsap.from(".header_right",{opacity:0,x:80,duration:1.5});
+gsap.from(".circle",{duration:2,y:15,repeat:-1,yoyo:true});
+
+</script>
+
 </body>
 </html>
