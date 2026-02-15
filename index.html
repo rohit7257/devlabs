@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            height: 100vh;
+            width: 100vw;
+        }
+        nav{
+            height: 80px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background-color: black;
+            position: relative;
+        }
+        .circle{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            position: absolute;
+            right: 200px;
+            top: -60px;
+            border: 10px solid yellow;
+
+        }
+        .nav_logo{
+            height: 80px;
+            width: 25%;
+            /* border: 3px solid blue; */
+        }
+        .nav_logo img{
+            height: 70px;
+            width: 250px;
+        }
+        .nav_links{
+            width: 50%;
+            /* border: 2px solid yellow; */
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .nav_links a{
+            font-size: 2rem;
+            text-decoration: none;
+            color: #fff;
+        }
+        .nav_btn{
+            width: 10%;
+            /* border: 2px solid  blue; */
+        }
+        .nav_btn button{
+            height: 50px;
+            width: 160px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            background-color: purple;
+        }
+        header{
+            height: calc(100% - 90px);
+            display: flex;
+            align-items: center;
+            background-color: #000;
+        }
+        .header_left{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+        }
+        .header_heading{
+            width: 75%;
+            /* border: 2px solid red; */
+        }
+        .header_heading h1{
+            font-size: 2.5rem;
+            color: orange;
+            text-align: center;
+            line-height: 1.3;
+        }
+        .header_content{
+            width: 75%;
+            /* border: 2px solid  blue; */
+        }
+        .header_content p{
+            color: #fff;
+            font-size: 1.5rem;
+        }
+        .header_content span{
+            color: green;
+        }
+        .header_btn{
+            width: 75%;
+            /* border: 2px solid red; */
+            display: flex;
+            justify-content: space-between;
+        }
+        .header_btn button{
+            height: 60px;
+            width: 270px;
+            font-size: 1.3rem;
+            border: none;
+            background-color: purple;
+            color: #fff;
+            border-radius: 15px;
+        }
+        .header_right{
+            width: 50%;
+            height: 100%;
+            /* border: 2px dashed blue; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header_right img{
+            height: 450px;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav_logo">
+            <img src="./devlab.jpeg" alt="">
+        </div>
+        <div class="circle"></div>
+        <div class="nav_links">
+            <a href="">Home</a>
+            <a href="">About</a>
+            <a href="">Training</a>
+            <a href="">Service</a>
+            <a href="">Product</a>
+        </div>
+        <div class="nav_btn">
+            <a href=""><button>Let's Talk</button></a>
+        </div>
+    </nav>
+    <header>
+        <div class="container">
+        </div>
+        <div class="header_left">
+            <div class="header_heading">
+                <h1>EMPOWERING YOUNG MINDS THROUGH TRAINING AND WEB DEVELOPMENT!</h1>
+            </div>
+            <div class="header_content">
+                <p>We are passionate <span>WEB DEVELOPER</span> and <span>EDUCATOR</span> dedicated to providing training to student in computer science and IT.</p>
+                <br>
+                <p>We creating engaging website and offer pratical skills that prepare for their future careers.</p>
+            </div>
+            <div class="header_btn">
+                <a href=""><button>Training Program</button></a>
+                <a href=""><button>Web Project</button></a>
+            </div>
+        </div>
+        <div class="header_right">
+            <img src="./comp.png" alt="">
+        </div>
+        
+    </header>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        gsap.from (".nav_logo",{
+            opacity:0,
+            duration:2,
+            delay:1,    
+            y:-30,
+
+        })
+        gsap.from(".nav_links a",{
+            duration:1.5,
+            delay:1,
+            y:-80,
+            stagger:0.8,
+        })
+        gsap.from("nav .circle",{
+            duration:2,
+            delay:1,
+            y:15,
+            repeat:8,
+            yoyo:true,
+            scrub:2,
+        })
+        gsap.from("nav button",{
+            duration:2,
+            y:-25,
+            stagger:2,
+        })
+        gsap.from("h1",{
+            duration:2,
+            y:-25,
+            x:-60,
+            stagger:0.4,
+            scrub:2,
+        })
+    </script>
+</body>
+</html>
